@@ -1,0 +1,19 @@
+name: Feature Request
+description: Submit a feature request
+title: "[Feat]: "
+labels: ["enhancement", "triage"]
+assignees:
+  - BeardedPlatypus
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+  - type: textarea
+    id: what-is-requested
+    attributes:
+      label: What would you like to see?
+      placeholder: Tell us what you want!
+      value: "I want this feature!"
+    validations:
+      required: true
