@@ -1,0 +1,11 @@
+proc string get_startup_script() {
+    return getenv("BEARDEDPLATYPUS_ROOT") + "/dcc_bootstrap/bootstrap_tests.py";
+}
+
+
+global proc bootstrap() {
+    string $file_path = get_startup_script();
+    
+    $pythonCmd = "with open('" + $file_path + "') as f: code = compile(f.read(), '" + $file_path + "', 'exec'); exec(code)";
+    python($pythonCmd);
+}

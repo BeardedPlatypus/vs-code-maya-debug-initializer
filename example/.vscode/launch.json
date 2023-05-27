@@ -1,0 +1,69 @@
+{
+    "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Launch Maya with Debug",
+            "configurations": ["Launch Maya 2023", "Python: Remote Attach"]
+        },
+        {
+            "name": "Launch Tests with Debug",
+            "configurations": ["Run Tox Tests", "Python: Remote Attach"]
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Launch Maya 2023",
+            "request": "launch",
+            "type": "cppvsdbg",
+            "program": "C:\\Program Files\\Autodesk\\Maya2023\\bin\\maya.exe",    
+            "stopAtEntry": false,
+            "cwd": "",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "C:\\Program Files\\Autodesk\\Maya2023;${env:PATH}"
+                },   
+                {
+                    "name": "MAYA_MODULE_PATH",
+                    "value": "${command:maya-debug-initializer.getDebugModFile};${workspaceFolder}\\demo_plugin\\modules;${env:MAYA_MODULE_PATH}"
+                },
+                {
+                    "name": "MAYA_SCRIPT_PATH",
+                    "value": "${workspaceFolder}\\startup;{env:MAYA_SCRIPT_PATH}"
+                },
+            ],
+        },
+        {
+            "name": "Python: Remote Attach",
+            "type": "python",
+            "request": "attach",
+            "justMyCode": false,
+            // This is a bit of a hack. We will always attach to the localhost and the port
+            // is set by the command. However, we cannot set the port with a command because it
+            // is expected to be a number and not a string. Thus we "set" the host, which 
+            // returns "localhost" once the debugger is attached.
+            "host": "${command:maya-debug-initializer.retrieveLocalHostWhenReady}",
+            "port": 3000,
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "${workspaceFolder}"
+                }
+            ]
+        },
+        {
+            "name": "Echo has started",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}\\echo.ps1",
+            "args": ["-val ${command:maya-debug-initializer.retrieveLocalHostWhenReady}"]
+        },
+        {
+            "name": "Run Tox Tests",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}\\run_tests.ps1",
+            "args": ["-module_path ${command:maya-debug-initializer.getDebugModFile} -debug_port 3000"]
+        }
+    ]
+}
