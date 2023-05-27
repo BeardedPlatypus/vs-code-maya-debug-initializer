@@ -29,7 +29,7 @@ def test_with_map():
     expected_value = 3000
     debug_mmap = _construct_mmap_with_value(expected_value)
 
-    # WHEN: attach_mmap_util.exe is run without an active mmap
+    # WHEN: read_port.exe is run without an active mmap
     val = _run_read_port()
 
     # THEN: the result is equal to the initial value 
@@ -39,7 +39,7 @@ def test_with_map():
 
 
 def test_no_map():
-    # WHEN: read_.exe is run without an active mmap
+    # WHEN: read_port.exe is run without an active mmap
     val = _run_read_port()
 
     # THEN: the result is 0
