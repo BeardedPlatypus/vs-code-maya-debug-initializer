@@ -64,7 +64,7 @@ Visual Studio Code to easily start it:
 param([string]$module_path="", [string]$debug_port="3000")
 
 $Env:MAYA_MODULE_PATH = $module_path
-$Env:DEBUG_PORT = $debug_port
+$Env:MDI_DEBUG_PORT = $debug_port
 
 # Note that the tests here are run with tox, but this could be replaced with
 # powershell command that runs your Maya tests.
