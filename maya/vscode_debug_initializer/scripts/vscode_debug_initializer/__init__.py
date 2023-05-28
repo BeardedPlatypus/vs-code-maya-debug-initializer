@@ -1,7 +1,7 @@
 """
 vscode_debug_initializer.__init__ provides the initialization logic of the module.
 """
-from . import command, common, mmap
+from . import command, common, mmap_utils
 
 
 def initialize(mplugin):
@@ -23,4 +23,4 @@ def uninitialize(mplugin):
         mplugin (OpenMaya.MFnPlugin): The plugin to uninitialize.
     """
     command.uninitialize(mplugin)
-    mmap.close_mmaps()
+    mmap_utils.close_mmaps()

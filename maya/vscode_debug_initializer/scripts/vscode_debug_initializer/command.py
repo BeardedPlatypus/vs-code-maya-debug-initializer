@@ -4,7 +4,7 @@ vscode_debug_initializer.command provides the command to configure the debug ser
 import logging
 
 from maya.api import OpenMaya
-from . import common, constants, debug_server, mmap
+from . import common, constants, debug_server, mmap_utils
 
 
 kWaitForClientShortName = "-wdb"
@@ -65,7 +65,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
 
         with common.wait_cursor():
             debug_server.initialize_debugger(self._port)
-            mmap.write(self._mmap_name, self._port)
+            mmap_utils.write(self._mmap_name, self._port)
 
             if self._wait_for_client:
                 debug_server.wait_for_client()
