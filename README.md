@@ -223,9 +223,8 @@ executed.
 
 The source code of the Maya plug-in can be found in
 [the `vscode_debug_initializer` directory](/maya/vscode_debug_initializer/). In order
-for the plugin to work correctly, you will need to restore the external packages
-required by the Maya plug-in, `debugpy` and `ptvsd`. This can be done by calling the
-following tox command:
+for the plugin to work correctly, you will need to restore the external package
+required by the Maya plug-in. This can be done by calling the following tox command:
 
 ```powershell
 tox -e restore-externals

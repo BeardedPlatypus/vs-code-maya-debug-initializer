@@ -1,8 +1,8 @@
 # Maya Debug Initializer - `vscode_debug_initializer` Maya Plug-in
 
 The `vscode_debug_initializer` provides the functionality to start a debug server
-inside Maya, with a single Maya command. It provides the necessary dependencies,
-`debugpy` for Python 3 and `ptvsd` for Python 2. The port at which the the debug server
+inside Maya, with a single Maya command. It provides the necessary debug dependency,
+`debugpy`. The port at which the the debug server
 should be started, as well as the memory map file name can be customized with flags.
 
 ## Usage
@@ -52,8 +52,8 @@ cmds.mdi_ConfigureDebugServer(mmapName="Local\\MY_DEBUG_PORT")
 
 ## Supported Versions
 
-The Maya Debug Initializer plug-in supports Maya 2020, Maya 2022, and Maya 2023. It
-works with both Python 2 and Python 3.
+The Maya Debug Initializer plug-in supports Maya 2023 and up. It
+works with Python 3.9 and up.
 
 ## Development
 
@@ -62,14 +62,13 @@ in the `vscode_debug_initializer` directory.
 
 ### Restoring the externals
 
-The Maya Debug Initializer leverages `debugpy` for Python 3, and `ptvsd` for Python 2.
-These dependencies are bundled with the plug-in in the `externals` directory. In order
-to restore these dependencies, the following tox command can be called:
+The Maya Debug Initializer leverages `debugpy`. This dependency is bundled with the plug-in
+in the `externals` directory. In order to restore these dependencies, the following tox command
+can be called:
 
 ```powershell
 $ tox -e restore_externals
 restore_externals: commands[0]> powershell.exe -Command "Copy-Item -Path \"<path-to-repository>\maya\.tox\restore_externals\Lib\site-packages\debugpy\" -Destination \"<path-to-repository>\maya\vscode_debug_initializer\externals\debugpy\" -Recurse"
-restore_externals: commands[1]> powershell.exe -Command "Copy-Item -Path \"<path-to-repository>\maya\.tox\restore_externals\Lib\site-packages\ptvsd\" -Destination \"<path-to-repository>\maya\vscode_debug_initializer\externals\ptvsd\" -Recurse"
   restore_externals: OK (2.55=setup[0.06]+cmd[1.12,1.36] seconds)
   congratulations :) (2.66 seconds)
 ```
