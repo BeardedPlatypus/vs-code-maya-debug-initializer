@@ -2,17 +2,12 @@
 vscode_debug_initializer.mmap provides the logic related to initializing and closing a mmap.
 """
 import mmap
-import six
 
 DEBUG_MMAPS = {}
 
 
-if six.PY3:
-    def _encode_port(value):
-        return value.to_bytes(2, byteorder="little", signed=False)
-else:
-    def _encode_port(value):
-        return ''.join([chr((value >> i) & 0xff) for i in range(0, 16, 8)])
+def _encode_port(value):
+    return value.to_bytes(2, byteorder="little", signed=False)
 
 
 UNINITIALISED_PORT = _encode_port(0)

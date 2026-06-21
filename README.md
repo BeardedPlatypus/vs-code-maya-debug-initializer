@@ -181,7 +181,7 @@ In order to build the complete plug-in you will need the following:
 Additionally, in order to manually validate the plug-in you will also need:
 
 * [Visual Studio Code][vscode]: The IDE to run the plug-in in.
-* [Maya][maya]: A recent version of Maya (currently 2020, 2022, and 2023 should work).
+* [Maya][maya]: A recent version of Maya (currently 2023 and 2025 are verified to work).
 
 [tox]: https://tox.wiki/en/latest/
 [docker]: https://www.docker.com/
