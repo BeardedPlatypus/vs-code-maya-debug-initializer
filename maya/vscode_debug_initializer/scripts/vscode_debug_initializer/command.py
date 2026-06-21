@@ -1,6 +1,7 @@
 """
 vscode_debug_initializer.command provides the command to configure the debug server.
 """
+from __future__ import annotations
 import logging
 
 from maya.api import OpenMaya
@@ -23,7 +24,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
 
     name = constants.CONFIGURE_DEBUG_SERVER_COMMAND_NAME
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Create a new ConfigureDebugServerCommand
         """
@@ -33,7 +34,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
         self._mmap_name = constants.DEFAULT_TAG_NAME
 
     @staticmethod
-    def cmd_creator():
+    def cmd_creator() -> ConfigureDebugServerCommand:
         """
         cmd_creator provides the factory method to create a 
         ConfigureDebugServerCommand.
@@ -41,7 +42,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
         return ConfigureDebugServerCommand()
 
     @staticmethod
-    def syntax_creator():
+    def syntax_creator() -> OpenMaya.MSyntax:
         """
         syntax_creator provides the factory method to create the syntax
         of the ConfigureDebugServerCommand.
@@ -52,7 +53,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
         syntax.addFlag(kMmapNameShortName, kMmapNameLongName, OpenMaya.MSyntax.kString)
         return syntax
 
-    def doIt(self, args):
+    def doIt(self, args: OpenMaya.MArgList) -> None:
         """
         Configure and start the debug server.
         """
@@ -72,7 +73,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
 
         self.setResult(self._port)
 
-    def _parse_arguments(self, args):
+    def _parse_arguments(self, args: OpenMaya.MArgList) -> None:
         arg_data = OpenMaya.MArgParser(self.syntax(), args)
         
         self._wait_for_client = (
@@ -91,7 +92,7 @@ class ConfigureDebugServerCommand(OpenMaya.MPxCommand):
             self._port = None
 
 
-def initialize(mplugin):
+def initialize(mplugin: OpenMaya.MFnPlugin) -> None:
     """
     Initialize the ConfigureDebugServerCommand.
 
@@ -111,7 +112,7 @@ def initialize(mplugin):
         )
 
 
-def uninitialize(mplugin):
+def uninitialize(mplugin: OpenMaya.MFnPlugin) -> None:
     """
     Uninitialize the ConfigureDebugServerCommand.
 

@@ -22,7 +22,7 @@ def _initialize_mmap(tag):
     DEBUG_MMAPS[tag] = mmap.mmap(-1, 2, tagname=tag)
 
 
-def write(tag, port):
+def write(tag: str, port: int) -> None:
     """
     Write the specified port value to the specified mmap.
 
@@ -36,7 +36,7 @@ def write(tag, port):
     DEBUG_MMAPS[tag].write(_encode_port(port))
 
 
-def close_mmaps():
+def close_mmaps() -> None:
     """
     Close the mmaps.
     """
