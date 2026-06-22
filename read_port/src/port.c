@@ -64,7 +64,7 @@ void FreeBufferFile(HANDLE hMapFile) {
 }
 
 
-#ifdef AS_EXECUTABLE
+#ifdef AS_READ_EXECUTABLE
 /// @brief Read the value written at the specified buffer.
 /// @param argc The number of arguments.
 /// @param argv The name and size of the buffer.
@@ -87,6 +87,28 @@ int main(int argc, char *argv[]) {
     FreeBuffer(pBuffer);
     FreeBufferFile(hMapFile);
 
+    return 0;
+}
+#endif
+
+#ifdef AS_RESET_EXECUTABLE
+/// @brief Reset the value at the specified buffer to zero.
+/// @param argc The number of arguments.
+/// @param argv The name of the buffer.
+/// @return 0 on success, 1 on failure.
+int main(int argc, char *argv[]) {
+    if (argc < 1) {
+        return 1;
+    }
+    DWORD bufferSize = 2;
+    HANDLE hMapFile = CreateBufferFile(argv[1], bufferSize);
+    LPVOID pBuffer = CreateBuffer(hMapFile, bufferSize);
+    
+    UINT16 zero = 0;
+    memcpy(pBuffer, &zero, bufferSize);
+    
+    FreeBuffer(pBuffer);
+    FreeBufferFile(hMapFile);
     return 0;
 }
 #endif

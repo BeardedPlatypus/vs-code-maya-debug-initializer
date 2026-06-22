@@ -181,7 +181,7 @@ In order to build the complete plug-in you will need the following:
 Additionally, in order to manually validate the plug-in you will also need:
 
 * [Visual Studio Code][vscode]: The IDE to run the plug-in in.
-* [Maya][maya]: A recent version of Maya (currently 2020, 2022, and 2023 should work).
+* [Maya][maya]: A recent version of Maya (currently 2023 and 2025 are verified to work).
 
 [tox]: https://tox.wiki/en/latest/
 [docker]: https://www.docker.com/
@@ -209,23 +209,23 @@ automated by the Continuous Integration / Continuous Delivery pipeline.
 
 #### `read_port`
 
-The `read_port` can be can be compiled from the "Developer Command Prompt for VS 2022"
-with the following command:
+The `read_port` executables can be compiled with the "Developer Command Prompt for VS 2022"
+with the following commands:
 
 ```cmd
-cl <repo_root>\read_port\src\read_port.c /DAS_EXECUTABLE
+cl <repo_root>\read_port\src\port.c /DAS_READ_EXECUTABLE /Feread_port.exe
+cl <repo_root>\read_port\src\port.c /DAS_RESET_EXECUTABLE /Fereset_port.exe
 ```
 
-Which will create a `read_port.exe` at the current location where the command is
+Which will create a `read_port.exe` and `reset_port.exe` at the location where the command is
 executed.
 
 #### `maya`
 
 The source code of the Maya plug-in can be found in
 [the `vscode_debug_initializer` directory](/maya/vscode_debug_initializer/). In order
-for the plugin to work correctly, you will need to restore the external packages
-required by the Maya plug-in, `debugpy` and `ptvsd`. This can be done by calling the
-following tox command:
+for the plugin to work correctly, you will need to restore the external package
+required by the Maya plug-in. This can be done by calling the following tox command:
 
 ```powershell
 tox -e restore-externals
@@ -241,7 +241,7 @@ necessary environment to compile and package the extension.
 First the `maya` plug-in directory [`vscode_debug_initializer`](/maya/vscode_debug_initializer/)
 should be copied to a new `maya` directory under the `vscode` directory.
 
-Secondly, the compiled `read_port.exe` should be copied to a new `externals`
+Secondly, the compiled `read_port.exe` and `reset_port.exe` should be copied to a new `externals`
 directory under the `vscode` directory.
 
 With these files correctly configured, we can build the plugin with the following commands:

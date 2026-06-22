@@ -15,12 +15,13 @@ port to connect to.
 
 ## Compiling the application
 
-The [`read_port.c`](src/read_port.c) provides the main function which
-can be compiled from the "Developer Command Prompt for VS 2022" with the following
+The [`port.c`](src/port.c) provides the read and reset port functionality. They
+can be compiled with the "Developer Command Prompt for VS 2022" with the following
 command:
 
 ```cmd
-cl <repo_root>\read_port\src\read_port.c /DAS_EXECUTABLE
+cl <repo_root>\read_port\src\port.c /DAS_READ_EXECUTABLE /Feread_port.exe
+cl <repo_root>\read_port\src\port.c /DAS_RESET_EXECUTABLE /Fereset_port.exe
 ```
 
 It does not provide a default value for the mmap tag, as such one always needs to be

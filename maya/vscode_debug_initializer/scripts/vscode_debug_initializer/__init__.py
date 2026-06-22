@@ -1,10 +1,13 @@
 """
 vscode_debug_initializer.__init__ provides the initialization logic of the module.
 """
+
+from maya.api import OpenMaya
+
 from . import command, common, mmap_utils
 
 
-def initialize(mplugin):
+def initialize(mplugin: OpenMaya.MFnPlugin) -> None:
     """
     Initialize the vscode_debug_initializer module.
 
@@ -15,7 +18,7 @@ def initialize(mplugin):
         command.initialize(mplugin)
 
 
-def uninitialize(mplugin):
+def uninitialize(mplugin: OpenMaya.MFnPlugin) -> None:
     """
     Uninitialize the vscode_debug_initializer module.
 

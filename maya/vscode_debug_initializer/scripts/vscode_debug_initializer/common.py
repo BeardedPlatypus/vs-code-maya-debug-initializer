@@ -11,7 +11,7 @@ from contextlib import contextmanager
 from maya import cmds
 
 
-def get_mayapy_path():
+def get_mayapy_path() -> str:
     """
     Get the mayapy path for the current version of Maya being used.
 
