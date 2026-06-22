@@ -209,14 +209,15 @@ automated by the Continuous Integration / Continuous Delivery pipeline.
 
 #### `read_port`
 
-The `read_port` can be can be compiled from the "Developer Command Prompt for VS 2022"
-with the following command:
+The `read_port` executables can be compiled with the "Developer Command Prompt for VS 2022"
+with the following commands:
 
 ```cmd
-cl <repo_root>\read_port\src\read_port.c /DAS_EXECUTABLE
+cl <repo_root>\read_port\src\port.c /DAS_READ_EXECUTABLE /Feread_port.exe
+cl <repo_root>\read_port\src\port.c /DAS_RESET_EXECUTABLE /Fereset_port.exe
 ```
 
-Which will create a `read_port.exe` at the current location where the command is
+Which will create a `read_port.exe` and `reset_port.exe` at the location where the command is
 executed.
 
 #### `maya`
@@ -240,7 +241,7 @@ necessary environment to compile and package the extension.
 First the `maya` plug-in directory [`vscode_debug_initializer`](/maya/vscode_debug_initializer/)
 should be copied to a new `maya` directory under the `vscode` directory.
 
-Secondly, the compiled `read_port.exe` should be copied to a new `externals`
+Secondly, the compiled `read_port.exe` and `reset_port.exe` should be copied to a new `externals`
 directory under the `vscode` directory.
 
 With these files correctly configured, we can build the plugin with the following commands:
